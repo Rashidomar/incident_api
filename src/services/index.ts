@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { IGetIncidentsParams, IPostIncidentPayload } from "../interfaces";
 import Incident from "../database/models/incident";
 import { Op } from "sequelize";
@@ -5,7 +6,6 @@ import { openWeatherApi } from "../../external_api/open.weather.api";
 
 export const incidentReport = async (payload: IPostIncidentPayload) => {
   try {
-    console.log(payload)
     const weatherData = await openWeatherApi(payload.city);
     const newData = await Incident.create({
       client_id: payload.client_id,
@@ -56,19 +56,18 @@ export const getFilteredIncidents = async (params: IGetIncidentsParams) => {
 
 export const searchIncident = async (body: any) => {
   const { country } = body;
-  console.log(country)
   try {
     const searchResult = await Incident.findAll({
-      // where: {
-      //   [Op.and]: [
-      //     { country: country },
-      //     { "weather_report.sys.country": country },
-      //   ],
-      // },
-      where: { country: country},
+      where: {
+        country: {
+          [Op.like]: `%${country}%`,
+        },
+      },
     });
     return searchResult;
   } catch (error) {
     console.log(error);
   }
 };
+
+export const debouncedSearch = _.debounce(searchIncident, 500);

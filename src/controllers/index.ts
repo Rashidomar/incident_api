@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import {
+  debouncedSearch,
   getFilteredIncidents,
   incidentReport,
-  searchIncident,
 } from "../services";
 
 export const INCIDENT_REPORT = async (
@@ -12,7 +12,7 @@ export const INCIDENT_REPORT = async (
 ) => {
   try {
     const result = await incidentReport(req.body);
-    res.status(200).json({
+    res.status(201).json({
       message: `Operation was succesful`,
       data: result,
     });
@@ -29,7 +29,7 @@ export const GET_INCIDENTS = async (
   try {
     const resp = await getFilteredIncidents(req.query);
     res.status(200).json({
-      message: `Operation was succesful`,
+      message: `Filtered incidents`,
       data: resp,
     });
   } catch (error) {
@@ -43,7 +43,7 @@ export const SEARCH_INCIDENT = async (
   next: NextFunction
 ) => {
   try {
-    const result = await searchIncident(req.body);
+    const result = await debouncedSearch(req.body);
     res.status(200).json({
       message: `Operation was succesful`,
       data: result,
