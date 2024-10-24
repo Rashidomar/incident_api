@@ -27,10 +27,10 @@ export const GET_INCIDENTS = async (
   next: NextFunction
 ) => {
   try {
-    const result = await getFilteredIncidents(req.query);
+    const resp = await getFilteredIncidents(req.query);
     res.status(200).json({
       message: `Operation was succesful`,
-      data: result,
+      data: resp,
     });
   } catch (error) {
     return next(error);

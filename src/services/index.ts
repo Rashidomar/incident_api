@@ -5,6 +5,7 @@ import { openWeatherApi } from "../../external_api/open.weather.api";
 
 export const incidentReport = async (payload: IPostIncidentPayload) => {
   try {
+    console.log(payload)
     const weatherData = await openWeatherApi(payload.city);
     const newData = await Incident.create({
       client_id: payload.client_id,

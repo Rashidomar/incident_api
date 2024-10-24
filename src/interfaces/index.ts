@@ -1,3 +1,4 @@
+import { STATUSCODE } from "../constants";
 export interface IPostIncidentPayload {
   client_id: number;
   incident_desc: string;
@@ -12,3 +13,11 @@ export interface IGetIncidentsParams {
   hummin?: string;
   hummax?: string;
 }
+
+export interface IAppErrorArgs {
+  status?: string;
+  statusCode: STATUSCODE;
+  message: string;
+  isOperational?: boolean;
+}
+
