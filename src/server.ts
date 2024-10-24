@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express, { Application, Request, Response, NextFunction } from "express";
+import helmet from "helmet";
 import router from "./routes";
 import { initModels } from "./database";
 import { AppError } from "./utils/errorHandler";
@@ -9,6 +10,7 @@ const PORT = process.env.PORT || 8000;
 
 initModels();
 
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
