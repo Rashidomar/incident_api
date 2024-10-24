@@ -59,3 +59,18 @@ describe("POST /api", () => {
       });
   });
 });
+
+describe("POST /api", () => {
+  it("should return an array of filtered incidents with a message given country param", (done) => {
+    request(app)
+      .post("/api/v1/incidents/search")
+      .send({
+        country: "Togo",
+      })
+      .end((_, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal("Operation was succesful");
+        done();
+      });
+  });
+});

@@ -70,4 +70,4 @@ export const searchIncident = async (body: any) => {
   }
 };
 
-export const debouncedSearch = _.debounce(searchIncident, 500);
+// export const debouncedSearch = _.debounce(searchIncident, 500);

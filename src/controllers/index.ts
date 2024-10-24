@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import {
-  debouncedSearch,
+  // debouncedSearch,
   getFilteredIncidents,
   incidentReport,
+  searchIncident,
 } from "../services";
 
 export const INCIDENT_REPORT = async (
@@ -43,7 +44,8 @@ export const SEARCH_INCIDENT = async (
   next: NextFunction
 ) => {
   try {
-    const result = await debouncedSearch(req.body);
+    const result = await searchIncident(req.body);
+    // const result = await debouncedSearch(req.body);
     res.status(200).json({
       message: `Operation was succesful`,
       data: result,
