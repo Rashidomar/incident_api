@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "rootDirs": ["src"],
+    "outDir": "build",
+    "lib": ["es2020"],
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "types": ["node"],
+    "strictNullChecks": false,
+    "allowJs": true
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "transpileOnly": true
+  }
+}
