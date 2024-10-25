@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express, { Application, Request, Response, NextFunction } from "express";
 import helmet from "helmet";
+import cors from "cors"
 import router from "./routes";
 import { initModels } from "./database";
 import { AppError } from "./utils/errorHandler";
@@ -10,6 +11,8 @@ const PORT = process.env.PORT || 8000;
 
 initModels();
 
+
+app.use(cors())
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -30,11 +33,20 @@ app.all("*", (req: Request, _: Response, next: NextFunction) => {
 });
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
-  error.status = error.status || "Failed";
-  error.statusCode = error.statusCode || 500;
-  res.status(error.statusCode).json({
-    status: error.status,
-    statusCode: error.statusCode,
+  // const messages:any
+  // if(){
+  //     error.forEach((element:any, index:any, array) => {
+  //   console.log(element.x); // 100, 200, 300
+  //   console.log(index); // 0, 1, 2
+  //   console.log(array); // same myArray object 3 times
+  // });
+  // }else{
+
+  // }
+
+  res.status(error.statusCode || 500).json({
+    status: error.status || "Failed",
+    statusCode: error.statusCode || 500,
     message: error.message,
   });
 });

@@ -17,7 +17,6 @@ export interface IGetIncidentsParams {
 export interface IAppErrorArgs {
   status?: string;
   statusCode: STATUSCODE;
-  message: string;
-  isOperational?: boolean;
+  message: any;
 }
 
