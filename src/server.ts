@@ -33,17 +33,6 @@ app.all("*", (req: Request, _: Response, next: NextFunction) => {
 });
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
-  // const messages:any
-  // if(){
-  //     error.forEach((element:any, index:any, array) => {
-  //   console.log(element.x); // 100, 200, 300
-  //   console.log(index); // 0, 1, 2
-  //   console.log(array); // same myArray object 3 times
-  // });
-  // }else{
-
-  // }
-
   res.status(error.statusCode || 500).json({
     status: error.status || "Failed",
     statusCode: error.statusCode || 500,
