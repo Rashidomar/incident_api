@@ -2,7 +2,7 @@ import _ from "lodash";
 import { IGetIncidentsParams, IPostIncidentPayload } from "../interfaces";
 import Incident from "../database/models/incident";
 import { Op } from "sequelize";
-import { openWeatherApi } from "../../external_api/open.weather.api";
+import { openWeatherApi } from "../external_api/open.weather.api";
 
 export const incidentReport = async (payload: IPostIncidentPayload) => {
   try {
