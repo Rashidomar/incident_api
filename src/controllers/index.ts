@@ -46,10 +46,16 @@ export const SEARCH_INCIDENT = async (
   try {
     const result = await searchIncident(req.body);
     // const result = await debouncedSearch(req.body);
-    res.status(200).json({
-      message: `Operation was succesful`,
-      data: result,
-    });
+    if (result === undefined || result.length == 0) {
+      res.status(200).json({
+        message: `Operation Was Succesful But No Results Found!!!`,
+      });
+    } else {
+      res.status(200).json({
+        message: `Operation was succesful`,
+        data: result,
+      });
+    }
   } catch (error) {
     return next(error);
   }
