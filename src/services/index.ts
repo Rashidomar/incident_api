@@ -3,6 +3,7 @@ import { IGetIncidentsParams, IPostIncidentPayload } from "../interfaces";
 import Incident from "../database/models/incident";
 import { Op } from "sequelize";
 import { openWeatherApi } from "../external_api/open.weather.api";
+import { AppError } from "../utils/errorHandler";
 
 export const incidentReport = async (payload: IPostIncidentPayload) => {
   try {
@@ -17,6 +18,10 @@ export const incidentReport = async (payload: IPostIncidentPayload) => {
     return newData.dataValues;
   } catch (error) {
     console.log(error);
+    throw new AppError({
+      statusCode: 500,
+      message: "An Error Occured",
+    });
   }
 };
 
@@ -51,6 +56,10 @@ export const getFilteredIncidents = async (params: IGetIncidentsParams) => {
     return incidents;
   } catch (error) {
     console.log(error);
+    throw new AppError({
+      statusCode: 500,
+      message: "An Error Occured",
+    });
   }
 };
 
@@ -66,6 +75,10 @@ export const searchIncident = async (body: any) => {
     });
     return searchResult;
   } catch (error) {
+    throw new AppError({
+      statusCode: 500,
+      message: "An Error Occured",
+    });
     console.log(error);
   }
 };
