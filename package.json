@@ -11,7 +11,8 @@
     "start:dev": "SET NODE_ENV=development & node --watch --loader ts-node/esm src/server.ts",
     "postbuild": "ts-add-js-extension --dir=build",
     "migration:generate": "npx sequelize-cli migration:generate --name $npm_config_name",
-    "migrate": "npx sequelize-cli db:migrate"
+    "migrate:dev": "npx sequelize-cli db:migrate",
+    "migrate:pro": "npx sequelize-cli db:migrate --env production"
   },
   "devDependencies": {
     "@types/chai": "^5.0.0",
