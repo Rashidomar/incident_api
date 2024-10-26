@@ -43,3 +43,4 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
 app.listen(PORT, () => {
   console.log(`🚀🚀🚀🔥🔥 Server runing on http://localhost:${PORT}`);
 });
+

@@ -14,10 +14,10 @@ const config = {
     dialect: "postgres",
   },
   production: {
-    username: "root",
-    password: "postgres",
-    database: "omar",
-    host: "127.0.0.1",
+    username: "incident_db_f3h3_user",
+    password: "nIn27XcIlPzymweVAtKk5jaWK4NzzSR3",
+    database: "incident_db_f3h3",
+    host: "dpg-csei5d68ii6s7394ikvg-a",
     dialect: "postgres",
   },
 };

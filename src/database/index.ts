@@ -3,16 +3,30 @@ import config from "./config/database";
 import Incident, { initIncident } from "./models/incident";
 
 const db: any = {};
-
-export const sequelize = new Sequelize(
-  config.development.database,
-  config.development.username,
-  config.development.password,
-  {
-    logging: false,
-    dialect: "postgres",
-  }
-);
+let sequelize;
+if (process.env.NODE_ENV === "production") {
+  console.log(`The app is running in ${process.env.NODE_ENV}`);
+  sequelize = new Sequelize(
+    config.production.database,
+    config.production.username,
+    config.production.password,
+    {
+      logging: false,
+      dialect: "postgres",
+    }
+  );
+} else {
+  console.log(`The app is running in ${process.env.NODE_ENV}`);
+  sequelize = new Sequelize(
+    config.development.database,
+    config.development.username,
+    config.development.password,
+    {
+      logging: false,
+      dialect: "postgres",
+    }
+  );
+}
 
 const models = {
   Incident,
