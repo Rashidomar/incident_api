@@ -23,7 +23,6 @@ if (process.env.NODE_ENV === "production") {
     config.development.username,
     config.development.password,
     {
-      host: config.development.host,
       logging: false,
       dialect: "postgres",
     }
